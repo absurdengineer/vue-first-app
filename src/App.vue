@@ -1,29 +1,67 @@
 <template>
-  <h1>Application</h1>
-  <greeting :age="age" />
-  <user :age="age" @age-change="handleAgeChange" />
+  <h1>Vue Application</h1>
+  <login-form name="Login Form" :handleSubmit="handleSubmit">
+    <custom-input
+      v-for="field in fields"
+      :key="field"
+      :name="field.name"
+      :type="field.type"
+      :label="field.label"
+      :required="field.required"
+      @custom-input="handleInput"
+    />
+  </login-form>
 </template>
 
 <script>
-import Greeting from "./components/Greeting.vue";
-import User from "./components/User.vue";
+import LoginForm from "./components/LoginForm.vue";
+import CustomInput from "./components/CustomInput.vue";
 
 export default {
   name: "App",
+  components: {
+    LoginForm,
+    CustomInput,
+  },
   data() {
     return {
-      age: 16,
+      formData: {
+        email: "",
+        password: "",
+      },
+      fields: [
+        {
+          name: "email",
+          type: "email",
+          label: "Email",
+          required: true,
+        },
+        {
+          name: "password",
+          type: "password",
+          label: "Password",
+          required: true,
+        },
+      ],
     };
   },
   methods: {
-    handleAgeChange(order) {
-      if (order === "i") this.age++;
-      else this.age--;
+    handleInput(event) {
+      this.formData[event.target.name] = event.target.value;
     },
-  },
-  components: {
-    Greeting,
-    User,
+    handleSubmit() {
+      console.log("Submitted");
+      console.log("Data : ", this.formData);
+      alert(
+        ` Data Submitted with \n Email : ${this.formData.email} \n Password : ${this.formData.password}`
+      );
+    },
   },
 };
 </script>
+
+<style>
+.mt-20 {
+  margin-top: 20px;
+}
+</style>
