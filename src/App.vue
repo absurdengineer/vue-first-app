@@ -4,7 +4,9 @@
     <option value="Home">Home</option>
     <option value="Login">Login</option>
   </select>
-  <component :is="activeComponent"></component>
+  <keep-alive>
+    <component :is="activeComponent"></component>
+  </keep-alive>
 </template>
 
 <script>
