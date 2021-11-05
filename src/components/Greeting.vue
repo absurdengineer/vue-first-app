@@ -18,12 +18,6 @@ export default {
       else return "Sr. Citizen";
     },
   },
-  methods: {
-    handleAgeChange(order) {
-      if (order === "i") this.age++;
-      else this.age--;
-    },
-  },
   props: ["age"],
 };
 </script>

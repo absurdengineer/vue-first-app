@@ -8,6 +8,12 @@
 export default {
   name: "User",
   props: ["age"],
+  emits: ["age-change"],
+  methods: {
+    handleAgeChange(order) {
+      this.$emit("age-change", order);
+    },
+  },
 };
 </script>
 
