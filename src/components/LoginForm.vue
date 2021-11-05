@@ -1,8 +1,8 @@
 <template>
-  <h3>{{ name }}</h3>
+  <slot name="description"></slot>
   <form @submit.prevent="handleSubmit">
     <slot></slot>
-    <button class="mt-20">Submit</button>
+    <slot name="buttons"></slot>
   </form>
 </template>
 
@@ -10,7 +10,7 @@
 export default {
   name: "LoginForm",
   components: {},
-  props: ["name", "handleSubmit"],
+  props: ["handleSubmit"],
 };
 </script>
 
