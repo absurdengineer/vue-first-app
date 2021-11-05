@@ -1,5 +1,5 @@
 <template>
-  <h1>{{ message }}</h1>
+  <p>{{ message }}</p>
 </template>
 
 <script>
@@ -13,8 +13,9 @@ export default {
 };
 </script>
 
-<style scoped>
-h1 {
-  color: red;
+<style scoped lang="scss">
+$color: red;
+p {
+  color: $color;
 }
 </style>
