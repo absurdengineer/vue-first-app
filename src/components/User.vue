@@ -7,7 +7,16 @@
 <script>
 export default {
   name: "User",
-  props: ["age"],
+  props: {
+    age: {
+      type: Number,
+      // required: true,
+      // default: 18,
+      validator(value) {
+        return value > 0;
+      },
+    },
+  },
   emits: ["age-change"],
   methods: {
     handleAgeChange(order) {
