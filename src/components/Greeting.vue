@@ -12,11 +12,16 @@ export default {
   },
   computed: {
     user() {
-      console.log(this.age);
       if (this.age < 12) return "Child";
       else if (this.age >= 12 && this.age < 18) return "Teen";
       else if (this.age >= 18 && this.age < 55) return "Adult";
       else return "Sr. Citizen";
+    },
+  },
+  methods: {
+    handleAgeChange(order) {
+      if (order === "i") this.age++;
+      else this.age--;
     },
   },
   props: ["age"],
