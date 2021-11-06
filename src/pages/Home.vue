@@ -6,8 +6,19 @@
     <h5 v-else key="secondary">This is Another Text</h5>
   </transition> -->
 
-  <transition name="zoom" appear mode="out-in">
+  <!-- <transition name="zoom" appear mode="out-in">
     <h5 v-if="flag" key="main">Hello World</h5>
+  </transition> -->
+
+  <transition
+    @before-enter="beforeEnter"
+    @enter="enter"
+    @after-enter="afterEnter"
+    @before-leave="beforeLeave"
+    @leave="leave"
+    @after-leave="afterLeave"
+  >
+    <h5 v-if="flag">Hello World</h5>
   </transition>
 </template>
 
@@ -25,6 +36,28 @@ export default {
   },
   deactivated() {
     console.log("Home Component Deactivated");
+  },
+  methods: {
+    beforeEnter(el) {
+      console.log("before-enter event Fired!", el);
+    },
+    enter(el, done) {
+      console.log("enter event Fired!", el);
+      done();
+    },
+    afterEnter(el) {
+      console.log("after-enter event Fired!", el);
+    },
+    beforeLeave(el) {
+      console.log("before-leave event Fired!", el);
+    },
+    leave(el, done) {
+      console.log("leave event Fired!", el);
+      done();
+    },
+    afterLeave(el) {
+      console.log("after-leave event Fired!", el);
+    },
   },
 };
 </script>
