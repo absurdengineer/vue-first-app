@@ -1,9 +1,13 @@
 <template>
   <h3>Home Page</h3>
   <button @click="flag = !flag">Toggle</button>
-  <transition name="fade" appear mode="out-in">
+  <!-- <transition name="fade" appear mode="out-in">
     <h5 v-if="flag" key="main">This is First Text</h5>
     <h5 v-else key="secondary">This is Another Text</h5>
+  </transition> -->
+
+  <transition name="zoom" appear mode="out-in">
+    <h5 v-if="flag" key="main">Hello World</h5>
   </transition>
 </template>
 
@@ -35,5 +39,29 @@ export default {
 .fade-leave-to {
   transition: all 0.5s linear;
   opacity: 0;
+}
+
+@keyframes zoom-in {
+  from {
+    transform: scale(0, 0);
+  }
+  to {
+    transform: scale(1, 1);
+  }
+}
+@keyframes zoom-out {
+  from {
+    transform: scale(1, 1);
+  }
+  to {
+    transform: scale(0, 0);
+  }
+}
+
+.zoom-enter-active {
+  animation: zoom-in 1s linear forwards;
+}
+.zoom-leave-active {
+  animation: zoom-out 1s linear forwards;
 }
 </style>
