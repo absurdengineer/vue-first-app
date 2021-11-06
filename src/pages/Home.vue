@@ -97,13 +97,18 @@ export default {
   opacity: 0;
 }
 .fade-enter-active {
-  transition: all 0.5s linear;
+  transition: all 1s linear;
 }
 .fade-leave-to {
-  transition: all 0.5s linear;
+  transition: all 1s linear;
   opacity: 0;
 }
-
+.fade-move {
+  transition: all 1s linear;
+}
+.fade-leave-active {
+  position: absolute;
+}
 @keyframes zoom-in {
   from {
     transform: scale(0, 0);
