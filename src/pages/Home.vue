@@ -26,7 +26,11 @@
   </transition> -->
   <button @click="addElement">Add Number</button>
   <ul>
-    <transition-group name="fade">
+    <transition-group
+      name="fade"
+      enter-active-class="animate__animated animate__flipInX"
+      leave-active-class="animate__animated animate__flipOutX"
+    >
       <li
         v-for="(number, index) in numbers"
         :key="number"
@@ -93,6 +97,12 @@ export default {
 </script>
 
 <style>
+.animate__flipOutX {
+  position: absolute;
+}
+.animate__animated {
+  animation-duration: 1.5s;
+}
 .fade-enter-from {
   opacity: 0;
 }
