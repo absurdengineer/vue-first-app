@@ -17,7 +17,11 @@
     @before-leave="beforeLeave"
     @leave="leave"
     @after-leave="afterLeave"
+    :css="false"
   >
+    <!-- :css will instruc vue not to check for css animations and go directly for js animations
+        as vue prefers css animations over js animations.
+    -->
     <h5 v-if="flag">Hello World</h5>
   </transition>
 </template>
@@ -43,7 +47,10 @@ export default {
     },
     enter(el, done) {
       console.log("enter event Fired!", el);
-      done();
+      const animation = el.animate([{ transform: "scale3d(0,0,0)" }, {}], {
+        duration: 1000,
+      });
+      animation.onfinish = () => done();
     },
     afterEnter(el) {
       console.log("after-enter event Fired!", el);
@@ -53,7 +60,10 @@ export default {
     },
     leave(el, done) {
       console.log("leave event Fired!", el);
-      done();
+      const animation = el.animate([{}, { transform: "scale3d(0,0,0)" }], {
+        duration: 1000,
+      });
+      animation.onfinish = () => done();
     },
     afterLeave(el) {
       console.log("after-leave event Fired!", el);
