@@ -1,6 +1,5 @@
 <template>
   <h3>Home Page</h3>
-  <button @click="flag = !flag">Toggle</button>
   <!-- <transition name="fade" appear mode="out-in">
     <h5 v-if="flag" key="main">This is First Text</h5>
     <h5 v-else key="secondary">This is Another Text</h5>
@@ -10,7 +9,7 @@
     <h5 v-if="flag" key="main">Hello World</h5>
   </transition> -->
 
-  <transition
+  <!-- <transition
     @before-enter="beforeEnter"
     @enter="enter"
     @after-enter="afterEnter"
@@ -20,18 +19,30 @@
     :css="true"
     name="fade"
   >
-    <!-- :css will instruc vue not to check for css animations and go directly for js animations
+     :css will instruc vue not to check for css animations and go directly for js animations
         as vue prefers css animations over js animations.
-    -->
+    
     <h5 v-if="flag">Hello World</h5>
-  </transition>
+  </transition> -->
+  <button @click="addElement">Add Number</button>
+  <ul>
+    <transition-group name="fade">
+      <li
+        v-for="(number, index) in numbers"
+        :key="number"
+        @click="handleDelete(index)"
+      >
+        {{ number }}
+      </li>
+    </transition-group>
+  </ul>
 </template>
 
 <script>
 export default {
   name: "Home",
   data() {
-    return { flag: true };
+    return { flag: true, numbers: [1, 2, 3, 4, 5, 6] };
   },
   unmounted() {
     console.log("Home Component Unmounted.");
@@ -68,6 +79,14 @@ export default {
     },
     afterLeave(el) {
       console.log("after-leave event Fired!", el);
+    },
+    addElement() {
+      const number = Math.floor(Math.random() * 100 + 1);
+      const index = Math.floor(Math.random() * this.numbers.length);
+      this.numbers.splice(index, 0, number);
+    },
+    handleDelete(index) {
+      this.numbers.splice(index, 1);
     },
   },
 };
@@ -115,5 +134,10 @@ export default {
 }
 .zoom-leave-to {
   opacity: 0;
+}
+
+li {
+  font-size: 22px;
+  cursor: pointer;
 }
 </style>
